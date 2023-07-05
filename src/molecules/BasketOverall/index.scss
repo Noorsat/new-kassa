@@ -1,0 +1,40 @@
+.basket__overall{
+    margin:20px 0;
+
+    &-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+    }
+
+    &-wrapper:last-child{
+        margin-top: 12px;
+    }
+
+    &-wrapper:first-child{
+        margin-top: 0;
+    }
+
+    &-title{
+        color: var(--text-dark-gray, #464F60);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+    }
+
+    &-text{
+        color: var(--text-gray, #83868B);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    &-total{
+        color: var(--text-black, #222834);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+}

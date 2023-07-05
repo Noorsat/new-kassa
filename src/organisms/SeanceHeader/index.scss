@@ -1,0 +1,21 @@
+.seance__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:16px 24px;
+
+    &-title{
+        display: flex;
+        align-items: center;    
+    }
+
+    &-title::before{
+        content:'';
+        display: block;
+        background: url('./../../assets/images/arrow-left.svg');
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    }
+}
+

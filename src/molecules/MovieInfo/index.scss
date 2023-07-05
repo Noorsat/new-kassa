@@ -1,0 +1,48 @@
+.movie__info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 8px;
+
+    &-name{
+        color: var(--text-black, #222834);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 4px;
+    }
+    
+    &-details{
+        display: flex;
+        gap:16px;
+    }
+
+    &-detail{
+        color: var(--text-gray, #83868B);
+        font-size: 14px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    &-title{
+        color: var(--text-gray, #83868B);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+        margin-bottom: 2px;
+    }
+
+    &-time{
+        color: var(--text-dark-gray, #464F60);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 18px;
+    }
+}

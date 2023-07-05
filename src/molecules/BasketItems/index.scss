@@ -1,0 +1,25 @@
+.basket__items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &-title{
+        color: var(--text-black, #222834);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+    &-clear{
+        color: var(--text-primary, #C31D28);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+    }
+}
+
+.basket__tickets{
+    max-height: 405px;
+    overflow-y: scroll;
+}

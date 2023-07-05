@@ -1,0 +1,37 @@
+.basket__item{
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--background-dark, #222834);
+    margin-bottom: 8px;
+
+    &:last-child{
+        margin-bottom: 0;
+    }
+
+    &-wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-seat{
+        color: var(--text-white, #FFF);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        margin-bottom: 4px;
+    }
+
+    &-discount{
+        color: var(--text-gray, #83868B);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+    }
+
+    &-price{
+        color: var(--text-white, #FFF);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+    }
+}
