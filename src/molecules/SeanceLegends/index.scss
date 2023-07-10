@@ -1,0 +1,22 @@
+.seance{
+    &__legends{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:24px;
+        margin-top: 32px;
+    }
+
+    &__legend{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &-text{
+            color: var(--text-dark-gray, #464F60);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+        }
+    }
+}

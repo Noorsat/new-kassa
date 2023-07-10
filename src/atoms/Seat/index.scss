@@ -1,0 +1,23 @@
+.seat{
+    background: url('../../assets/images/seat-free.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 34px;
+    height: 24.933px;   
+    color: var(--text-dark-gray, #464F60);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+
+    &-empty{
+        display: none;
+    }
+    
+    &__col{
+        display: flex;
+        justify-content: center;
+        padding-top: 1px;
+    }
+}
+
