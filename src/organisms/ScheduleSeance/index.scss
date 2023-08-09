@@ -6,6 +6,7 @@
     max-width: 134px;
     width: 100%;
     padding:8px;
+    cursor: pointer;
 }
 .seance__top{
     display: flex;
@@ -15,7 +16,6 @@
 }
 .seance__lang{
     display: flex;
-    align-items: center;
     gap:5px;
 }
 .seance__lang-icon img{

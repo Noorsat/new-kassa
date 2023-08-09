@@ -5,8 +5,7 @@ import ScheduleDate from './../../molecules/ScheduleDate';
 import dayjs from 'dayjs';
 import rus from 'dayjs/locale/ru';
 
-const ScheduleDates = () => {
-    const [selectedDate, setSelectedDate] = useState(dayjs());
+const ScheduleDates = ({ selectedDate, dateChangeHandler }) => {
     const [dates, setDates] = useState();
 
     dayjs.locale(rus);
@@ -23,9 +22,6 @@ const ScheduleDates = () => {
         setDates(dates);
     }, [])
 
-    const dateChangeHandler = (date) => {
-        setSelectedDate(date);
-    }
 
     return (
         <div className='date'>

@@ -3,13 +3,12 @@ import { removeLettersFromSeat } from '../../utils/serialization';
 import './index.scss'
 import classNames from 'classnames';
 import { useActions } from './../../hooks/useActions'
+import { useBasket } from './../../hooks/useBasket'
 
 const Seat = ({seat}) => {
     const { toggleBasket } = useActions();
 
-    const { basket } = useSelector(state => state)
-
-    console.log(basket)
+    const { basket } = useBasket()
 
     const generateSeat = classNames({
         seat,

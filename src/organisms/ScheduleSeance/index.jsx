@@ -1,39 +1,55 @@
+import './index.scss';
 import React from 'react';
 import ru from '../../assets/images/rus.png';
-import './index.scss';
+import kz from '../../assets/images/kz.png';
+import moment from 'moment';
+import { useNavigate } from "react-router-dom";
 
-const ScheduleSeance = () => {
+const ScheduleSeance = ({ id, language, startTime, endTime, hall }) => {
+    const navigate = useNavigate();
+
+    const now = moment()
+
+    const seanceOpenHandler = () => {
+        navigate("/" + id);
+    } 
+
     return (
-        <div className='seance'>
+        <div className='seance' onClick={seanceOpenHandler}>
             <div className='seance__top'>
                 <div className='seance__lang'>
                     <div className='seance__lang-icon'>
-                        <img src={ru} />
+                        <img src={language === "rus" ? ru : language === "kaz" ? kz : ''} />
                     </div>
                     <div className='seance__lang-type'>
-                        Рус
+                        { language === "rus" ? <>Рус</> : language === "kaz" ? <>Каз</> : ''}
                     </div>
                 </div>
-                <div className='seance__hall-type'>
+                {/* <div className='seance__hall-type'>
                     3D
-                </div>
+                </div> */}
             </div>
             <div className='seance__middle'>
                 <div className='seance__time'>
-                    10:10
+                    { moment(startTime).format("HH:mm") }
                 </div>
-                <div className='seance__left'>
-                    <div className='seance__left-dot'>
-                    </div>
-                    <div className='seance__left-time'>
-                        30 мин
-                    </div>
-                </div> 
+                {
+                    (moment(startTime).diff(now, 'minutes') <= 30 && moment(startTime).diff(now, 'minutes') > 0) && (
+                        <div className='seance__left'>
+                            <div className='seance__left-dot'>
+                            </div>
+                            <div className='seance__left-time'>
+                                { moment(startTime).diff(now, 'minutes') } мин
+                            </div>
+                        </div> 
+                    )
+                }
+        
             </div>
             <div className='seance__hall'>
-                ЗАЛ 2
+                { hall?.toUpperCase() }
             </div>
-        </div>
+        </div>  
     )
 }
 
