@@ -1,21 +1,21 @@
 import './index.scss'
 
-const MovieInfo = () => {
+const MovieInfo = ({ name, genre, duration, certification, startTime }) => {
     return ( 
         <div className='movie__info'>
             <div>
                 <div className='movie__info-name'>
-                    Аватар 2: Путь воды
+                    { name } 
                 </div>
                 <div className='movie__info-details'>
                     <div className='movie__info-detail'>
                         Фантастика, боевик
                     </div>
                     <div className='movie__info-detail'>
-                        120 минут
+                        { duration } минут
                     </div>
                     <div className='movie__info-detail'>
-                        16+
+                        { certification }
                     </div>
                 </div>
             </div>

@@ -5,10 +5,18 @@ import SeanceDetails from '../../molecules/SeanceDetails';
 import SeanceTariffs from '../../molecules/SeanceTariffs';
 import SeanceMap from '../../molecules/SeanceMap';
 
-const SeanceInfo = () => {
+const SeanceInfo = ({ seanceInfo }) => {
+    console.log(seanceInfo)
+
     return (
         <div className='seance__info'>
-            <MovieInfo />
+            <MovieInfo 
+                name={seanceInfo?.name}
+                genre={seanceInfo?.genre}
+                duration={seanceInfo?.duration}
+                certification={seanceInfo?.certification}
+                startTime={seanceInfo?.seance?.start_time}
+            />
             <SeanceOthers />
             <SeanceDetails />
             <SeanceTariffs />

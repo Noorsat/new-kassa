@@ -13,10 +13,10 @@ const Seance = () => {
     const { isLoading : seanceStatusLoading, data : seanceStatus } = useGetSeanceStatusQuery(id);
 
     return (
-        <div className='seances'>
+        <div>
             <SeanceHeader />
             <div className='seances__wrapper'>
-                <SeanceInfo />
+                <SeanceInfo seanceInfo={seanceInfo} />
                 <SeanceBasket />
             </div>
         </div>

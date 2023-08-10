@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { removeLettersFromSeat } from '../../utils/serialization';
 import './index.scss'
 import classNames from 'classnames';
