@@ -45,14 +45,17 @@ body, *{
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
 }
+
 ::-webkit-scrollbar {
     width: 0px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
+	width: 0;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+	width: 0;
 }

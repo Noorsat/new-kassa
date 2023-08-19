@@ -1,7 +1,9 @@
 .seance__other{
-    max-width: 130.4px;
+    flex-basis: 130.4px;
+    flex-grow: 0;
+    flex-shrink: 0;
     height: 48px;
-    width: 100%;
+    width: 130.4px;
     padding:6px 14px;
     background: var(--background-light-gray, #F8F9FC);
     cursor: pointer;

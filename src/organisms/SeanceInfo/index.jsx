@@ -6,8 +6,6 @@ import SeanceTariffs from '../../molecules/SeanceTariffs';
 import SeanceMap from '../../molecules/SeanceMap';
 
 const SeanceInfo = ({ seanceInfo }) => {
-    console.log(seanceInfo)
-
     return (
         <div className='seance__info'>
             <MovieInfo 
@@ -17,8 +15,16 @@ const SeanceInfo = ({ seanceInfo }) => {
                 certification={seanceInfo?.certification}
                 startTime={seanceInfo?.seance?.start_time}
             />
-            <SeanceOthers />
-            <SeanceDetails />
+            <SeanceOthers 
+                nearSeance={seanceInfo?.near_seances}
+            />
+            <SeanceDetails 
+                startTime={seanceInfo?.seance?.start_time}
+                endTime={seanceInfo?.seance?.end_time}
+                hall={seanceInfo?.seance?.hall?.name}
+                language={seanceInfo?.seance?.language}
+                
+            />
             <SeanceTariffs />
             <SeanceMap />
         </div>

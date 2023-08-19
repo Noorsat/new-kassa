@@ -1,18 +1,33 @@
 import './index.scss'
+import moment from 'moment'
+import { FULL_DATE, HOUR_MINUTES } from '../../utils/formats';
+import ru from '../../assets/images/rus.png';
+import kz from '../../assets/images/kz.png';
+import Countdown from 'react-countdown';
 
-const SeanceDetails = () => {
+const SeanceDetails = ({ startTime, endTime, hall, language }) => {
+
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        return <span>{String(hours).length === 1 ? `0${hours}` : hours}:{String(minutes).length === 1 ? `0${minutes}` : minutes}:{String(seconds).length === 1 ? `0${seconds}` : seconds}</span>;
+    };
+
     return (
         <div className='seance__details'>
             <div>
                 <div className='seance__details-time'>
-                    14:10 – 15:50
+                    { moment(startTime).format(HOUR_MINUTES) } - { moment(endTime).format(HOUR_MINUTES) }
                 </div>
                 <div className='seance__details-wrapper'>
                     <div className='seance__details-hall'>
-                        <span className='seance__details-hall-name'>Зал:</span> 1 зал, Comfort Laser <span className='seance__details-hall-type'>IMAX</span>
+                        <span className='seance__details-hall-name'>Зал:</span> { hall } 
                     </div>
                     <div className='seance__details-lang'>
-                        <span className='seance__details-lang-name'>Язык:</span> <span className='seance__details-lang-icon'>Русский</span>
+                        <span className='seance__details-lang-icon'>
+                            <img height={18} src={language === 'rus' ? ru : language === 'kaz' ? kz : ''} />
+                        </span>
+                        <span className='seance__details-lang-text'>
+                            { language === "rus" ? 'Русский' : language === "kaz" ? 'Казахский' : ''}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -21,7 +36,11 @@ const SeanceDetails = () => {
                     До начала осталось
                 </div>
                 <div className='seance__details-left-time'>
-                    05:15:09
+                    <Countdown 
+                        date={moment(startTime).format(FULL_DATE)} 
+                        intervalDelay={0}
+                        renderer={renderer} 
+                    />
                 </div>    
             </div>
         </div>

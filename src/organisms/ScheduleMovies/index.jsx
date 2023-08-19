@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss';
 import moment from 'moment';
 import ScheduleSeance from '../ScheduleSeance';
+import { getGenres } from '../../utils/formatter';
 
 const ScheduleMovies = ({ name, genre, duration, certification, seances }) => {
     const now = moment()
@@ -14,18 +15,7 @@ const ScheduleMovies = ({ name, genre, duration, certification, seances }) => {
             <div className='movies__details'>
                 <div className='movies__genre' style={{display: !genre && 'none'}}>
                     {
-                        genre && genre.map((g, index) => {
-                               if (genre.length > 1){
-                                    if (index === g.length-1){
-                                        return g
-                                    }else{
-                                        return g + ', '
-                                    }
-                               }else{
-                                    return <>{ g }</>
-                               }
-                            }
-                        )
+                        genre && getGenres(genre)
                     }
                 </div>
                 <div className='movies__duration' style={{ display: !duration && 'none' }}>

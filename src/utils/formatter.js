@@ -12,3 +12,21 @@ export const addSpaces = (number) => {
     
     return result;
 }
+
+export const getGenres = (genre) => {
+    return genre.map((g, index) => {
+        if (genre.length > 1){
+             if (index === g.length-1){
+                 return g
+             }else{
+                 return g + ', '
+             }
+        }else{
+             return <>{ g }</>
+        }
+    })
+}
+
+export const firstLetterUppercase = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

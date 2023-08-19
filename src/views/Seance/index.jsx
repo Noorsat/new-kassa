@@ -8,6 +8,8 @@ import { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery }
 const Seance = () => {
     const { id } = useParams();
 
+    console.log(id)
+
     const { isLoading : seanceInfoLoading, data : seanceInfo } = useGetSeanceInfoQuery(id);
     const { isLoading : seancePlanLoading, data : seancePlan } = useGetSeancePlanQuery(id);
     const { isLoading : seanceStatusLoading, data : seanceStatus } = useGetSeanceStatusQuery(id);
