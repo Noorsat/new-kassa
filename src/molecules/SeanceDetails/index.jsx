@@ -36,11 +36,16 @@ const SeanceDetails = ({ startTime, endTime, hall, language }) => {
                     До начала осталось
                 </div>
                 <div className='seance__details-left-time'>
-                    <Countdown 
-                        date={moment(startTime).format(FULL_DATE)} 
-                        intervalDelay={0}
-                        renderer={renderer} 
-                    />
+                    {
+                        startTime && (
+                            <Countdown 
+                                date={moment(startTime).format(FULL_DATE)} 
+                                intervalDelay={0}
+                                renderer={props => renderer(props)} 
+                            />
+                        )
+                    }
+                    
                 </div>    
             </div>
         </div>

@@ -7,22 +7,27 @@ import RowMarker from '../../atoms/RowMarker'
 import Seat from '../../atoms/Seat'
 import SeanceLegends from './../../molecules/SeanceLegends'
 
-const SeanceMap = () => {
-    const [hallMap, setHallMap] = useState(parseRawDataToHall(seats.data))
+const SeanceMap = ({ seancePlan }) => {
+    const hallMap = parseRawDataToHall(seancePlan && seancePlan)
     const [seatArray, setSeatArray] = useState([])
     const [hallSeatsStatus, setHallSeatsStatus] = useState(null)
     const [rowMarkers, setRowMarkers] = useState();
 
+
     useEffect(() => {
-        hallMap && (hallSeatsStatus === null || hallSeatsStatus) && drawFirstHallMap(getHallMap(hallMap))
+      hallMap && (hallSeatsStatus === null || hallSeatsStatus) && drawFirstHallMap(getHallMap(hallMap))
     }, [])
-    
+
     useEffect(
         () => {
           hallMap && (hallSeatsStatus === null || hallSeatsStatus) && setSeatArray(getHallMap(hallMap))
         },
-        [hallMap, hallSeatsStatus]
+        [hallSeatsStatus, seancePlan]
     );
+
+    useEffect(() => {
+      setRowMarkers(rowMarkersComposer(seatArray))
+    }, [seatArray])
 
     const drawFirstHallMap = (seatArray) => {
         setSeatArray(seatArray);
@@ -30,13 +35,13 @@ const SeanceMap = () => {
     }
 
     const getHallMap = (hall) => {
-        const hallSeats = [].concat(...hall.zones.map((zone) => {
-          return zone.seats
+        const hallSeats = hall?.zones && [].concat(...hall?.zones?.map((zone) => {
+          return zone?.seats
         })) || [];
 
         const rowsCount = hallSeats.length > 0 ? Math.max.apply(Math, hallSeats.map((o) => o.x)) : 0
         const colsCount = hallSeats.length > 0 ? Math.max.apply(Math, hallSeats.map((o) => o.y)) : 0
-        const array = Array(colsCount).fill(null).map(() => Array(rowsCount).fill({
+        const array = Array(colsCount)?.fill(null)?.map(() => Array(rowsCount).fill({
           seatRow: -1,
           seatCol: -1,
           status: -1,
@@ -104,7 +109,7 @@ const SeanceMap = () => {
                       Экран
                   </div>
               </div>
-              <div>
+              <div style={{maxWidth: 712}}>
                 {
                   seatArray?.map((row, index) => (
                     <div className='seats__row'>

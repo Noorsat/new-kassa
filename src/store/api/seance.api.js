@@ -6,19 +6,28 @@ const seanceApi = api.injectEndpoints({
             query: (seanceId) => ({
                 url: `/schedule/seance/${seanceId}`,
                 method: 'GET' 
-            })
+            }),
+            providesTags:() => [{
+                type: 'Seance'
+            }]
         }),
         getSeancePlan: builder.query({
             query: (seanceId) => ({
                 url: `/seance/${seanceId}/plan`,
                 method: 'GET'
-            })
+            }),
+            providesTags:() => [{
+                type: 'Seance'
+            }]
         }),
         getSeanceStatus: builder.query({
             query: (seanceId) => ({
                 url: `/seance/${seanceId}/seat/status`,
                 method: 'GET'
-            })
+            }),
+            providesTags:() => [{
+                type: 'Seance'
+            }]
         }),
     })
 })

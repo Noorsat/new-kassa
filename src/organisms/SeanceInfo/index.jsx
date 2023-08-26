@@ -5,7 +5,9 @@ import SeanceDetails from '../../molecules/SeanceDetails';
 import SeanceTariffs from '../../molecules/SeanceTariffs';
 import SeanceMap from '../../molecules/SeanceMap';
 
-const SeanceInfo = ({ seanceInfo }) => {
+const SeanceInfo = ({ seanceInfo, seancePlan }) => {
+    const discounts = seancePlan && seancePlan.zones && [].concat(...seancePlan.zones.map(zone => zone?.discounts))
+
     return (
         <div className='seance__info'>
             <MovieInfo 
@@ -25,8 +27,17 @@ const SeanceInfo = ({ seanceInfo }) => {
                 language={seanceInfo?.seance?.language}
                 
             />
-            <SeanceTariffs />
-            <SeanceMap />
+            <SeanceTariffs 
+                discounts={discounts}
+            />
+            {
+                seancePlan && (
+                    <SeanceMap 
+                        seancePlan={seancePlan}
+                    />
+                )
+            }
+           
         </div>
     )
 }

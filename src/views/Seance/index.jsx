@@ -4,11 +4,11 @@ import SeanceInfo from './../../organisms/SeanceInfo'
 import SeanceBasket from './../../organisms/SeanceBasket'
 import { useParams } from 'react-router-dom';
 import { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery } from '../../store/api/seance.api'
+import Loading from './../../atoms/Loading'
+import { useEffect } from 'react';
 
 const Seance = () => {
     const { id } = useParams();
-
-    console.log(id)
 
     const { isLoading : seanceInfoLoading, data : seanceInfo } = useGetSeanceInfoQuery(id);
     const { isLoading : seancePlanLoading, data : seancePlan } = useGetSeancePlanQuery(id);
@@ -17,10 +17,18 @@ const Seance = () => {
     return (
         <div>
             <SeanceHeader />
-            <div className='seances__wrapper'>
-                <SeanceInfo seanceInfo={seanceInfo} />
-                <SeanceBasket />
-            </div>
+            {
+                (seanceInfoLoading && seancePlanLoading && seanceStatusLoading) ?  
+                <Loading /> 
+                :
+                <div className='seances__wrapper'>
+                    <SeanceInfo 
+                        seanceInfo={seanceInfo} 
+                        seancePlan={seancePlan?.data}
+                    />
+                    <SeanceBasket />
+                </div>  
+            }
         </div>
     )
 }

@@ -7,8 +7,6 @@ import { useBasket } from './../../hooks/useBasket'
 const Seat = ({seat}) => {
     const { toggleBasket } = useActions();
 
-    const { basket } = useBasket()
-
     const generateSeat = classNames({
         seat,
         'seat-empty': seat?.colText === -1
