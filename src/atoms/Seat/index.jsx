@@ -11,12 +11,9 @@ import { seatStatus } from '../../utils/enums';
 const Seat = ({seat}) => {
     const { id } = useParams();
     const { toggleBasket, setSeatArray } = useActions();
-    const { basket } = useBasket();
     const { seance } = useSeance();
 
     const seatArray = seance.seatArray
-
-    console.log(seatArray)
 
     const [lockSeat] = useLockSeatMutation()
  
