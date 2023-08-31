@@ -1,6 +1,6 @@
 .seance__map{
     display: flex;
-    justify-content: center;
+    overflow-x: scroll;
 
     &-screen{
         margin-top: 16px;

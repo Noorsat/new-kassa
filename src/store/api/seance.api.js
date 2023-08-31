@@ -29,7 +29,16 @@ const seanceApi = api.injectEndpoints({
                 type: 'Seance'
             }]
         }),
+        lockSeat: builder.mutation({
+            query: body => ({
+                body: {
+                    seats: body.seats
+                },
+                url: `/seance/${body.seanceId}/seat/lock`,
+                method: 'POST'
+            })
+        })
     })
 })
 
-export const { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery } = seanceApi
+export const { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery, useLockSeatMutation } = seanceApi

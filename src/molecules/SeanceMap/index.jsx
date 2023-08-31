@@ -6,10 +6,14 @@ import { seats } from '../../data'
 import RowMarker from '../../atoms/RowMarker'
 import Seat from '../../atoms/Seat'
 import SeanceLegends from './../../molecules/SeanceLegends'
+import { useSeance } from '../../hooks/useSeance'
+import { useActions } from '../../hooks/useActions'
 
 const SeanceMap = ({ seancePlan }) => {
     const hallMap = parseRawDataToHall(seancePlan && seancePlan)
-    const [seatArray, setSeatArray] = useState([])
+    const { seance } = useSeance()
+    const { setSeatArray } = useActions();
+    const seatArray = seance?.seatArray;
     const [hallSeatsStatus, setHallSeatsStatus] = useState(null)
     const [rowMarkers, setRowMarkers] = useState();
 
@@ -48,7 +52,6 @@ const SeanceMap = ({ seancePlan }) => {
           rowText: -1,
           colText: -1,
         }));
-    
     
         hallSeats.forEach((item) => {
           const x = item.x;
@@ -93,7 +96,7 @@ const SeanceMap = ({ seancePlan }) => {
     return (
       <>
         <div className='seance__map'>
-            <div className='seance__map-rows'>
+            <div className='seance__map-rows' style={{marginRight: 8}}>
               {
                 rowMarkers?.map(row => (
                   <RowMarker row={row}/>
@@ -109,7 +112,7 @@ const SeanceMap = ({ seancePlan }) => {
                       Экран
                   </div>
               </div>
-              <div style={{maxWidth: 712}}>
+              <div>
                 {
                   seatArray?.map((row, index) => (
                     <div className='seats__row'>
@@ -122,6 +125,13 @@ const SeanceMap = ({ seancePlan }) => {
                   ))
                 }
               </div>
+            </div>
+            <div className='seance__map-rows' style={{marginLeft: 8}}>
+              {
+                rowMarkers?.map(row => (
+                  <RowMarker row={row}/>
+                ))
+              }
             </div>
         </div>
         <SeanceLegends />

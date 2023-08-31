@@ -7,10 +7,10 @@ export const basketsSlice = createSlice({
     initialState,
     reducers: {
         toggleBasket: (state = initialState, { payload }) => {
-            const isExists = state.some(ticket => ticket.id === payload.id)
+            const isExists = state.some(ticket => ticket.seat.id === payload.seat.id)
 
             if (isExists){
-                const index = state.findIndex(ticket => ticket.id === payload.id)
+                const index = state.findIndex(ticket =>  ticket.seat.id === payload.seat.id)
 
                 if (index !== -1){
                     state.splice(index, 1)
