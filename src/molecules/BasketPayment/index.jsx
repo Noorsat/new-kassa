@@ -7,8 +7,6 @@ import { useSeance } from '../../hooks/useSeance';
 const BasketPayment = () => {
     const { seance } = useSeance();
 
-    console.log(seance)
-
     return (
         <div className='basket__payment'>
             <div className='basket__payment-wrapper'>

@@ -18,6 +18,9 @@ export const basketsSlice = createSlice({
             }else{
                 state.push(payload) 
             }
+        },
+        clearBasket: (state = initialState) => {
+            return state = []
         }
     }
 })

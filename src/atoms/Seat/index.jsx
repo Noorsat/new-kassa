@@ -8,12 +8,10 @@ import { useLockSeatMutation } from '../../store/api/seance.api';
 import { useParams } from 'react-router-dom';
 import { seatStatus } from '../../utils/enums';
 
-const Seat = ({seat}) => {
+const Seat = ({seat, changeSeatStatus}) => {
     const { id } = useParams();
-    const { toggleBasket, setSeatArray } = useActions();
+    const { toggleBasket } = useActions();
     const { seance } = useSeance();
-
-    const seatArray = seance.seatArray
 
     const [lockSeat] = useLockSeatMutation()
  
@@ -44,23 +42,7 @@ const Seat = ({seat}) => {
     }
 
     
-  const changeSeatStatus = (seat, status) => {
-    const row = seat.seatRow - 1;
-    const col = seat.seatCol - 1;
-
-    setSeatArray(seatArray.map((r, index) => {
-        return r.map((seat, i) => {
-            if (index === row && i === col){
-                return {
-                    ...seat,
-                    status: status
-                }
-            }else{
-                return seat
-            }
-        })
-    }))
-  };
+ 
 
     return (
         <div className={generateSeat} onClick={click}>

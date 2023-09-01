@@ -11,8 +11,6 @@ const BasketOverall = () => {
         }, 0)
     }
 
-    console.log(basket);
-
     const getDiscounts = () => {
         const groupedDiscounts = basket.reduce((result, obj) => {
             const id = obj.id;
@@ -37,7 +35,6 @@ const BasketOverall = () => {
                     {basket?.length} шт
                 </div>
             </div>
-            {console.log(getDiscounts())}
             { getDiscounts()?.map(discount => (
                 <div className='basket__overall-wrapper'>
                     <div className='basket__overall-text'>

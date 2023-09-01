@@ -1,9 +1,23 @@
+import { useActions } from '../../hooks/useActions';
 import { useBasket } from '../../hooks/useBasket'
+import { useSeance } from '../../hooks/useSeance';
 import BasketItem from './../../atoms/BasketItem'
 import './index.scss'
 
-const BasketItems = () => {
+const BasketItems = ({ changeSeatStatus }) => {
     const { basket } = useBasket();
+    const { seance } = useSeance();
+
+    const { clearBasket } = useActions();
+
+    console.log(seance);
+    
+    const clearAllBasket = () => {
+        basket?.map(seat => {
+            changeSeatStatus(seat?.seat, 1);
+        })
+        clearBasket();
+    }
 
     return (
         <>
@@ -11,7 +25,7 @@ const BasketItems = () => {
                 <div className='basket__items-title'>
                     Заказ
                 </div>
-                <div className='basket__items-clear'>
+                <div className='basket__items-clear' onClick={clearAllBasket}>
                     Очистить все
                 </div>
             </div>

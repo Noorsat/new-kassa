@@ -9,7 +9,7 @@ import SeanceLegends from './../../molecules/SeanceLegends'
 import { useSeance } from '../../hooks/useSeance'
 import { useActions } from '../../hooks/useActions'
 
-const SeanceMap = ({ seancePlan }) => {
+const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
     const hallMap = parseRawDataToHall(seancePlan && seancePlan)
     const { seance } = useSeance()
     const { setSeatArray } = useActions();
@@ -118,7 +118,10 @@ const SeanceMap = ({ seancePlan }) => {
                     <div className='seats__row'>
                       {
                         row?.map((seat) => (
-                          <Seat seat={seat}/>
+                          <Seat 
+                            seat={seat}
+                            changeSeatStatus={changeSeatStatus}
+                          />
                         ))
                       }
                     </div>

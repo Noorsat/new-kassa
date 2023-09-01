@@ -13,7 +13,9 @@ import { useSeance } from '../../hooks/useSeance'
 
 const Seance = () => {
     const { id } = useParams();
-    const { loadSeance } = useActions();
+    const { seance } = useSeance()
+    const seatArray = seance?.seatArray;
+    const { loadSeance, setSeatArray } = useActions();
     const navigate = useNavigate();
 
     const { isLoading : seanceInfoLoading, data : seanceInfo, error: seanceInfoError, isSuccess: seanceInfoSuccess } = useGetSeanceInfoQuery(id);
@@ -26,6 +28,24 @@ const Seance = () => {
             message: 'Сеанс не доступен',
         })
     }
+
+    const changeSeatStatus = (seat, status) => {
+        const row = seat.seatRow - 1;
+        const col = seat.seatCol - 1;
+
+        setSeatArray(seatArray.map((r, index) => {
+            return r.map((seat, i) => {
+                if (index === row && i === col){
+                    return {
+                        ...seat,
+                        status: status
+                    }
+                }else{
+                    return seat
+                }
+            })
+        }))
+      };
 
     useEffect(() => {
         loadSeance({
@@ -46,8 +66,11 @@ const Seance = () => {
                         <SeanceInfo 
                             seanceInfo={seanceInfo} 
                             seancePlan={seancePlan?.data}
+                            changeSeatStatus={changeSeatStatus}
                         />
-                        <SeanceBasket />
+                        <SeanceBasket 
+                            changeSeatStatus={changeSeatStatus}
+                        />
                     </div>  
                 :
                 ''

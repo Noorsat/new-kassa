@@ -5,7 +5,7 @@ import BasketPayment from '../../molecules/BasketPayment';
 import dayjs from 'dayjs';
 import { DATE_IN_TEXT_SHORT, HOUR_MINUTES } from '../../utils/formats';
 
-const SeanceBasket = () => {
+const SeanceBasket = ({ changeSeatStatus }) => {
     const date = dayjs();    
 
     return (
@@ -18,7 +18,9 @@ const SeanceBasket = () => {
                     { date.format(HOUR_MINUTES) }
                 </div>
             </div>
-            <BasketItems />
+            <BasketItems 
+                changeSeatStatus={changeSeatStatus}
+            />
             <BasketOverall />
             <BasketPayment />
         </div>
