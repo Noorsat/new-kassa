@@ -19,13 +19,13 @@ const Seat = ({seat}) => {
  
     const generateSeat = classNames({
         seat,
-        'seat-free': seat.status === seatStatus.Free,
+    'seat-free': seat.status === seatStatus.Free,
         'seat-selected' : seat.status === seatStatus.Selected,
         'seat-empty': seat?.colText === -1
     })
 
     const click = () => {
-        const body = {
+    const body = {
             seats: [seat.id],
             seanceId: id
         }
@@ -38,7 +38,7 @@ const Seat = ({seat}) => {
                 }
                 
                 toggleBasket(body) 
-                changeSeatStatus(seat, 2)
+                changeSeatStatus(seat, seat?.status === 1 ? 2 : 1)
             })
         }
     }

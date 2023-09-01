@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     selectedDiscount: '',
-    seatArray: []
+    seatArray: [],
+    contract: {},
+    payments: []
 }
 
 export const seanceSlice = createSlice({
@@ -14,6 +16,10 @@ export const seanceSlice = createSlice({
         },
         setSeatArray: (state = initialState, { payload }) => {
             state.seatArray = payload
+        },
+        loadSeance: (state = initialState, { payload }) => {
+            state.contract = payload.contract;
+            state.payments = payload.payments;
         }
     }
 })

@@ -2,8 +2,13 @@ import Button from '../../atoms/Button';
 import './index.scss';
 import CashIcon from './../../assets/images/cash.svg';
 import CardIcon from './../../assets/images/card.svg';
+import { useSeance } from '../../hooks/useSeance';
 
 const BasketPayment = () => {
+    const { seance } = useSeance();
+
+    console.log(seance)
+
     return (
         <div className='basket__payment'>
             <div className='basket__payment-wrapper'>

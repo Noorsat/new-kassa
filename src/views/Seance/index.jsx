@@ -13,6 +13,7 @@ import { useSeance } from '../../hooks/useSeance'
 
 const Seance = () => {
     const { id } = useParams();
+    const { loadSeance } = useActions();
     const navigate = useNavigate();
 
     const { isLoading : seanceInfoLoading, data : seanceInfo, error: seanceInfoError, isSuccess: seanceInfoSuccess } = useGetSeanceInfoQuery(id);
@@ -25,6 +26,13 @@ const Seance = () => {
             message: 'Сеанс не доступен',
         })
     }
+
+    useEffect(() => {
+        loadSeance({
+            contract: seanceInfo?.contract,
+            payments: seanceInfo?.contract?.payments
+        })
+    }, [seanceInfo])
 
     return (
         <div>
