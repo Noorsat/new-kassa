@@ -8,25 +8,24 @@ import Seat from '../../atoms/Seat'
 import SeanceLegends from './../../molecules/SeanceLegends'
 import { useSeance } from '../../hooks/useSeance'
 import { useActions } from '../../hooks/useActions'
+import { zoneTypes } from '../../utils/enums'
 
-const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
+const SeanceMap = ({ seancePlan, seanceStatus, changeSeatStatus, discounts }) => {
     const hallMap = parseRawDataToHall(seancePlan && seancePlan)
     const { seance } = useSeance()
     const { setSeatArray } = useActions();
     const seatArray = seance?.seatArray;
-    const [hallSeatsStatus, setHallSeatsStatus] = useState(null)
     const [rowMarkers, setRowMarkers] = useState();
 
-
     useEffect(() => {
-      hallMap && (hallSeatsStatus === null || hallSeatsStatus) && drawFirstHallMap(getHallMap(hallMap))
+      hallMap && (seanceStatus === null || seanceStatus) && drawFirstHallMap(getHallMap(hallMap))
     }, [])
 
     useEffect(
         () => {
-          hallMap && (hallSeatsStatus === null || hallSeatsStatus) && setSeatArray(getHallMap(hallMap))
+          hallMap && (seanceStatus === null || seanceStatus) && setSeatArray(getHallMap(hallMap))
         },
-        [hallSeatsStatus, seancePlan]
+        [seanceStatus, seancePlan]
     );
 
     useEffect(() => {
@@ -52,7 +51,7 @@ const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
           rowText: -1,
           colText: -1,
         }));
-    
+        
         hallSeats.forEach((item) => {
           const x = item.x;
           const y = item.y;
@@ -63,8 +62,8 @@ const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
               id: item.id,    
               seatRow: item.y,
               seatCol: item.x,
-              status: hallSeatsStatus?.find((s) => s.seat_id === item.id)?.status || item.status,
-              ticket: hallSeatsStatus?.find((s) => s.seat_id === item.id)?.ticket || hallSeatsStatus?.find((s) => s.seat_id === item.id)?.cashier_id,
+              status: seanceStatus?.find((s) => s.seat_id === item.id)?.status || item.status,
+              ticket: seanceStatus?.find((s) => s.seat_id === item.id)?.ticket || seanceStatus?.find((s) => s.seat_id === item.id)?.cashier_id,
               rowText: item.rowText,
               colText: item.seatText,
               name: '',
@@ -121,6 +120,7 @@ const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
                           <Seat 
                             seat={seat}
                             changeSeatStatus={changeSeatStatus}
+                            discounts={discounts}
                           />
                         ))
                       }
@@ -137,7 +137,9 @@ const SeanceMap = ({ seancePlan, changeSeatStatus }) => {
               }
             </div>
         </div>
-        <SeanceLegends />
+        <SeanceLegends 
+          zones={hallMap?.zones?.filter(zone => zone?.type !== zoneTypes?.default)}
+        />
       </>
     )
 }

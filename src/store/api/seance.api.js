@@ -45,9 +45,22 @@ const seanceApi = api.injectEndpoints({
                 body: body,
                 url: `/ticket/buy`,
                 method: 'POST'
-            })
+            }),
+            invalidatesTags:() => [{
+                type: 'Seance'
+            }]
+        }),
+        reservedTicket: builder.mutation({
+            query: body => ({
+                body: body,
+                url: `/ticket/reserve`,
+                method: 'POST'
+            }),
+            invalidatesTags:() => [{
+                type: 'Seance'
+            }]
         })
     })
 })
 
-export const { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery, useLockSeatMutation } = seanceApi
+export const { useGetSeanceInfoQuery, useGetSeancePlanQuery, useGetSeanceStatusQuery, useLockSeatMutation, useBuyTicketMutation } = seanceApi

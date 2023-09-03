@@ -11,7 +11,7 @@ export const parseRawDataToHallSeats = (raw, zone) => ({
   x: raw?.properties?.grid?.x,
   y: raw?.properties?.grid?.y,
   zoneId: zone?.id,
-  zoneName: zone?.name,
+  zoneName: zone?.type,
   zoneColor: zone?.color,
   loveSeatReference: raw?.reference,
   ticket: raw?.ticket

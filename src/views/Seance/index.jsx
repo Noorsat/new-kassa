@@ -22,6 +22,10 @@ const Seance = () => {
     const { isLoading : seancePlanLoading, data : seancePlan, error: seancePlanError, isSuccess: seancePlanSuccess  } = useGetSeancePlanQuery(id);
     const { isLoading : seanceStatusLoading, data : seanceStatus,  error: seanceStatusError,  isSuccess: seanceStatusSuccess  } = useGetSeanceStatusQuery(id);
    
+    console.log(seanceInfoLoading)
+    console.log(seancePlanLoading)
+    console.log(seanceStatusLoading)
+
     if (seanceInfoError || seancePlanError || seanceStatusError){
         navigate('/')
         notification.error({
@@ -66,11 +70,10 @@ const Seance = () => {
                         <SeanceInfo 
                             seanceInfo={seanceInfo} 
                             seancePlan={seancePlan?.data}
+                            seanceStatus={seanceStatus}
                             changeSeatStatus={changeSeatStatus}
                         />
-                        <SeanceBasket 
-                            changeSeatStatus={changeSeatStatus}
-                        />
+                        <SeanceBasket />
                     </div>  
                 :
                 ''

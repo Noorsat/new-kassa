@@ -14,6 +14,26 @@
         color: var(--text-dark-gray, #464F60);
     }
 
+    &-sold{
+        background: url('../../assets/images/seat-buy.svg')!important;
+        color: var(--text-dark-gray, #464F60);
+    }
+
+    &-reserved{
+        background: url('../../assets/images/seat-reserved.svg')!important;
+        color: var(--text-dark-gray, #464F60);
+    }
+
+    &-loveSeats {
+        background: url('../../assets/images/seat-love.svg');
+        color: var(--text-dark-gray, #464F60);
+    }
+
+    &-vip {
+        background: url('../../assets/images/seat-vip.svg');
+        color: var(--text-dark-gray, #464F60);
+    }
+
     &-selected{
         background: url('../../assets/images/seat-selected.svg');
         color: var(--text-white, #FFF);

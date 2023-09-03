@@ -4,18 +4,36 @@ import { useSeance } from '../../hooks/useSeance';
 import BasketItem from './../../atoms/BasketItem'
 import './index.scss'
 
-const BasketItems = ({ changeSeatStatus }) => {
+const BasketItems = () => {
     const { basket } = useBasket();
     const { seance } = useSeance();
 
-    const { clearBasket } = useActions();
+    const seatArray = seance?.seatArray
 
-    console.log(seance);
-    
+    const { clearBasket, setSeatArray } = useActions();
+
     const clearAllBasket = () => {
+        let newSeatArray = seatArray;
+
         basket?.map(seat => {
-            changeSeatStatus(seat?.seat, 1);
+            const row = seat?.seat?.seatRow - 1;
+            const col = seat?.seat?.seatCol - 1;
+
+            newSeatArray = newSeatArray.map((r, index) => {
+                return r.map((seat, i) => {
+                    if (index === row && i === col){
+                        return {
+                            ...seat,
+                            status: 1
+                        }
+                    }else{
+                        return seat
+                    }
+                })
+            })
         })
+
+        setSeatArray(newSeatArray)
         clearBasket();
     }
 

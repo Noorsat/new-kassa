@@ -12,7 +12,11 @@ const SeanceTariff = ({name, value, id, selectedTariffId, selectedTariffHandler}
                     { name }
                 </div>
                 <div className='seance__tariff-value'>
-                    { addSpaces(value) }
+                    { 
+                        value?.map(v => (
+                            <> {addSpaces(v?.value) } <br /> </> 
+                        ))
+                    }
                 </div>
             </div>
         </div>

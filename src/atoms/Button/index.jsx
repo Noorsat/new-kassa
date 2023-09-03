@@ -1,6 +1,6 @@
 import './index.scss';
 
-const Button = ({ backgroundColor, icon, text, color, border }) => {
+const Button = ({ backgroundColor, icon, text, color, border, onClick }) => {
     return (
         <button 
             style={{
@@ -9,6 +9,7 @@ const Button = ({ backgroundColor, icon, text, color, border }) => {
                 background: backgroundColor && backgroundColor
             }}
             className='button'
+            onClick={onClick}
         >
             {
                 icon &&

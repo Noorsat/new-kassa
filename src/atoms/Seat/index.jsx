@@ -6,32 +6,39 @@ import { useBasket } from './../../hooks/useBasket'
 import { useSeance } from '../../hooks/useSeance';
 import { useLockSeatMutation } from '../../store/api/seance.api';
 import { useParams } from 'react-router-dom';
-import { seatStatus } from '../../utils/enums';
+import { seatStatus, zoneTypes } from '../../utils/enums';
 
-const Seat = ({seat, changeSeatStatus}) => {
+const Seat = ({seat, changeSeatStatus, discounts}) => {
     const { id } = useParams();
     const { toggleBasket } = useActions();
     const { seance } = useSeance();
 
     const [lockSeat] = useLockSeatMutation()
- 
+
     const generateSeat = classNames({
         seat,
-    'seat-free': seat.status === seatStatus.Free,
+        'seat-free': seat.status === seatStatus.Free,
         'seat-selected' : seat.status === seatStatus.Selected,
-        'seat-empty': seat?.colText === -1
+        'seat-sold': seat.status === seatStatus.Sold,
+        'seat-reserved': seat.status === seatStatus.Reserved,
+        'seat-empty': seat?.colText === -1,
+        'seat-loveSeats': seat?.zoneName === zoneTypes.loveSeats,
+        'seat-vip': seat?.zoneName === zoneTypes.vip
     })
 
     const click = () => {
-    const body = {
+        const body = {
             seats: [seat.id],
             seanceId: id
         }
 
-        if (seance.selectedDiscount){
+        const discount = discounts?.filter(d => d.id === seance.selectedDiscount?.id && d?.zoneId === seat?.zoneId)[0];
+
+
+        if (discount){
             lockSeat(body).then(() => {
                 const body = {
-                    ...seance.selectedDiscount,
+                    ...discount,
                     seat
                 }
                 
@@ -47,7 +54,7 @@ const Seat = ({seat, changeSeatStatus}) => {
     return (
         <div className={generateSeat} onClick={click}>
             <div className='seat__col'>
-                {removeLettersFromSeat(seat?.colText)}
+                {seat?.status !== seatStatus.Sold && removeLettersFromSeat(seat?.colText)}
             </div>
         </div>
     )
